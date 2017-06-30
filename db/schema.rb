@@ -27,8 +27,8 @@ Sequel.migration do
     
     create_table(:appointments) do
       primary_key :id
-      foreign_key :patient_id, :patients, :key=>[:id]
-      foreign_key :doctor_id, :doctors, :key=>[:id]
+      foreign_key :patient_id, :patients, :null=>false, :key=>[:id]
+      foreign_key :doctor_id, :doctors, :null=>false, :key=>[:id]
       
       index [:patient_id, :doctor_id]
     end
@@ -36,6 +36,12 @@ Sequel.migration do
     create_table(:doctor_has_services) do
       primary_key :id
       foreign_key :doctor_id, :doctors, :key=>[:id]
+      foreign_key :service_id, :services, :key=>[:id]
+    end
+    
+    create_table(:appointment_has_services) do
+      primary_key :id
+      foreign_key :appointment_id, :appointments, :key=>[:id]
       foreign_key :service_id, :services, :key=>[:id]
     end
   end
