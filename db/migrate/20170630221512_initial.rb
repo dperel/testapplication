@@ -70,8 +70,8 @@ Sequel.migration do
 
         create_table(:doctor_endorsements) do
             primary_key :id
-            foreign_key :doctor_id, :doctors
-            foreign_key :endorsing_doctor_id, :doctors
+            foreign_key :receiving_doctor_id, :doctors
+            foreign_key :giving_doctor_id, :doctors
             String :content
             TimestampTZ :created_at
             TimestampTZ :updated_at
@@ -81,6 +81,14 @@ Sequel.migration do
             primary_key :id
             foreign_key :doctor_id, :doctors
             foreign_key :patient_id, :patients
+            TimestampTZ :created_at
+            TimestampTZ :updated_at
+        end
+
+        create_table(:characteristics) do
+            primary_key :id
+            foreign_key :endorsement_id, :patient_endorsements
+            String :content
             TimestampTZ :created_at
             TimestampTZ :updated_at
         end
