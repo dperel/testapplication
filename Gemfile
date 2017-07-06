@@ -15,7 +15,7 @@ gem 'pg'
 
 gem 'sequel-rails'
 
-gem "react_on_rails", "8.0.0"
+gem "react-rails"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -59,4 +59,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mini_racer', platforms: :ruby
-gem 'webpacker_lite'
+gem 'webpacker'
