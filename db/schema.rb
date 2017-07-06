@@ -27,6 +27,10 @@ Sequel.migration do
     create_table(:services) do
       primary_key :id
       column :name, "text"
+      column :group, "text"
+      column :restrictions, "text"
+      column :procedure_code, "text"
+      column :effective_date, "text"
       column :created_at, "timestamp with time zone"
       column :updated_at, "timestamp with time zone"
     end
@@ -43,8 +47,8 @@ Sequel.migration do
     
     create_table(:doctor_endorsements) do
       primary_key :id
-      foreign_key :doctor_id, :doctors, :key=>[:id]
-      foreign_key :endorsing_doctor_id, :doctors, :key=>[:id]
+      foreign_key :receiving_doctor_id, :doctors, :key=>[:id]
+      foreign_key :giving_doctor_id, :doctors, :key=>[:id]
       column :content, "text"
       column :created_at, "timestamp with time zone"
       column :updated_at, "timestamp with time zone"
@@ -86,6 +90,14 @@ Sequel.migration do
     create_table(:appointment_reviews) do
       primary_key :id
       foreign_key :appointment_id, :appointments, :key=>[:id]
+      column :content, "text"
+      column :created_at, "timestamp with time zone"
+      column :updated_at, "timestamp with time zone"
+    end
+    
+    create_table(:characteristics) do
+      primary_key :id
+      foreign_key :endorsement_id, :patient_endorsements, :key=>[:id]
       column :content, "text"
       column :created_at, "timestamp with time zone"
       column :updated_at, "timestamp with time zone"

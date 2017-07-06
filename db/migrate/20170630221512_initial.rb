@@ -22,6 +22,10 @@ Sequel.migration do
         create_table(:services) do
             primary_key :id
             String :name
+            String :group
+            String :restrictions
+            String :procedure_code
+            String  :effective_date
             TimestampTZ :created_at
             TimestampTZ :updated_at
         end
